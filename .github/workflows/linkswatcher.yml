@@ -1,0 +1,16 @@
+name: Periodic Link Checker
+
+on:
+  workflow_dispatch:
+
+jobs:
+    link-checker:
+        runs-on: ubuntu-latest
+        steps:
+            - name: 'Checkout source code'
+              uses: actions/checkout@v3
+            - name: Link Checker
+              id: lychee
+              uses: lycheeverse/lychee-action@v1.5.4
+              with:
+                args: --verbose --no-progress --max-concurrency 2 --exclude-mail --exclude-loopback './**/*.md'
